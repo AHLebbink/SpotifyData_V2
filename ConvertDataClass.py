@@ -51,17 +51,20 @@ class ConvertData:
             combined_year_data = pd.concat(split_years, ignore_index=True)
             # combined_year_data.replace(float('nan'), '', inplace=True)
 
-            # Split time into hour minute and seconds
-            combined_year_data['time'] = combined_year_data['time'].str.replace('Z', '')
-            combined_year_data[['hour', 'minute', 'second']] = combined_year_data['time'].str.split(':', expand=True)
+            if not combined_year_data.empty:
 
-            # Remove track/episode if played for 0 ms
-            combined_year_data = combined_year_data.loc[combined_year_data['ms_played'] >= 10000]
+                # Split time into hour minute and seconds
+                combined_year_data['time'] = combined_year_data['time'].str.replace('Z', '')
+                combined_year_data[['hour', 'minute', 'second']] = combined_year_data['time'].str.split(':', expand=True)
 
-            new_filename = 'Streaming_History_Audio_' + str(year) + '.csv'
-            combined_year_data.to_csv(os.path.join(self.save_dir, new_filename))
+                # Remove track/episode if played for 0 ms
+                combined_year_data = combined_year_data.loc[combined_year_data['ms_played'] >= 10000]
 
-            print('New Data files saved in ' + os.path.join(self.save_dir, new_filename))
+                if not combined_year_data.empty:
+                    new_filename = 'Streaming_History_Audio_' + str(year) + '.csv'
+                    combined_year_data.to_csv(os.path.join(self.save_dir, new_filename))
+
+                    print('New Data files saved in ' + os.path.join(self.save_dir, new_filename))
 
         print('end')
 

@@ -3,3 +3,7 @@ clean_data_Anna/
 Spotify Extended Streaming History/
 venv/
 scrap.ipynb
+.idea/
+/analysed_data_Julia/
+/clean_data_Julia/
+/Spotify Extended Streaming History_Julia/

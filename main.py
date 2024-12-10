@@ -2,12 +2,12 @@ from ConvertDataClass import ConvertData
 from AnalyseDataClass import AnalyseData
 
 if __name__ == '__main__':
-    username = 'Anna'
-    start_year = 2016
+    username = 'Julia'
+    start_year = 2015
     end_year = 2024
-    convert = False
+    convert = True
     save = True
-    spotify_data_folder = 'Spotify Extended Streaming History'
+    spotify_data_folder = 'Spotify Extended Streaming History_Julia'
 
     cd = ConvertData(username, start_year, end_year)
 
